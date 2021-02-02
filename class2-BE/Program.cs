@@ -9,27 +9,43 @@ namespace class1_BE
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Please select a number from 1 to 4");
+            int choice = int.Parse(Console.ReadLine());
+            switch (choice)
+            {
+                case 1: 
+                    // Process Complete numbers
+                    Console.WriteLine("You chose Complete Number, please enter a number:");
+                    int num = int.Parse(Console.ReadLine());
+                    Console.WriteLine(IsComplete(num));
+                    break;
+                case 2:
+                    // Process Complete in a range
+                    Console.WriteLine("You chose Complete in a range, please enter two numbers:");
+                    int startNum = int.Parse(Console.ReadLine());
+                    int endNum = int.Parse(Console.ReadLine());
+                    CompleteInRange(startNum, endNum);
+                    break;
+                case 3: 
+                    // Process AreFriends
+                    Console.WriteLine("You chose friend numbers, please enter two numbers:");
+                    int num1 = int.Parse(Console.ReadLine());
+                    int num2 = int.Parse(Console.ReadLine());
+                    Console.WriteLine(AreFriends(num1, num2));
+                    break;
+                case 4:
+                    // Process Friends in range
+                    Console.WriteLine("You chose Friends in a specific range, please enter two numbers:");
+                    int friendNum1 = int.Parse(Console.ReadLine());
+                    int friendNum2 = int.Parse(Console.ReadLine());
+                    RangeOfFriends(friendNum1, friendNum2);
+                    break;
+                default:
+                    Console.WriteLine("Invalid, please choose between 1 and 4.");
+                    break;
+            }
 
-            //int[] org = new int[] { 1, 6, 6, 16, -25, -30 };
-            //int[] copy = new int[4]; // { 1, 4, 5, 5.47234 }
 
-            //for (int i = 0; i < org.Length; i++)
-            //{
-            //    copy[i] = Math.Abs(org[i]);
-            //}
-
-            //PrintArray(copy);
-            // Error, wrong type - Can not accept a chrArr as the function is returning an int array. 
-            //char[] chrArr = new char[5];
-            //PrintArray(chrArr); 
-
-            //int input = int.Parse(Console.ReadLine());
-            //int freq = NumFrequencyInArray(copy, input);
-            //double d = Math.Sin(19);
-
-            //CompleteInRange(10, 10000);
-            Console.WriteLine(AreFriends(6, 6));
-            RangeOfFriends(1, 1000);
         }
 
 
@@ -121,6 +137,8 @@ namespace class1_BE
             }
             return false;
         }
+
+
         static int SumOfDivisors(int num)
         {
             int result = 0;
