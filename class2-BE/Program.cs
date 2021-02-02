@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Dynamic;
+using System.IO.Compression;
+using System.Threading.Channels;
 
 namespace class1_BE
 {
@@ -6,142 +9,141 @@ namespace class1_BE
     {
         static void Main(string[] args)
         {
-            //int[] nums = new int[] { 4, 6, 7, 2 };
-            //// Console.WriteLine(nums); // print the type name
-            //for (int i = 0; i < nums.Length; i++)
-            //{
-            //    Console.WriteLine(nums[i]);
-            //}
-            //int[] nums2 = new int[4];
-            //for (int i = 0; i < nums2.Length; i++)
-            //{
-            //    nums2[i] = int.Parse(Console.ReadLine());
-            //}
 
-
-
-            // Create a new array from the original one, where the new values are square vals of the original. 
-            //int[] org = new int[] { 1, 2, 3, 4, 5 };
-            //int[] copy = new int[5]; // expected values - {1, 4, 9, 16, 25}
-            //for (int i=0; i<org.Length; i++)
-            //{
-            //    copy[i] = org[i] * org[i];
-            //}
-            //for (int i = 0; i < copy.Length; i++)
-            //{
-            //    Console.WriteLine(copy[i]);
-            //}
-
-
-
-            // Create a new array from an original one, where the new values are root squares vals of the original
-            //int[] org = new int[] { 1, 16, 25, 30 };            
-            //double[] copy = new double[4]; // { 1, 4, 5, 5.47234 }
-            //// Math.Sqrt(5); // Returns the sqroot of any number // Can't use float as it won't be accurate - need to pick double in this situation. 
-
-            //for (int i=0; i < org.Length; i++)
-            //{
-            //    copy[i] = Math.Sqrt(org[i]);  
-            //}
-            //for (int i = 0; i < copy.Length; i++)
-            //{
-            //    Console.WriteLine(copy[i]);
-            //}
-
-
-
-            // Create a new array from the original one,
-            // where the new values are absolute vals of the original. 
-            // absolute value: 5 and -5 is also 5
-
-            //int[] org = new int[] { 1, 16, -25, -30 };
+            //int[] org = new int[] { 1, 6, 6, 16, -25, -30 };
             //int[] copy = new int[4]; // { 1, 4, 5, 5.47234 }
-            //// Math.Sqrt(5); // Returns the sqroot of any number // Can't use float as it won't be accurate - need to pick double in this situation. 
 
             //for (int i = 0; i < org.Length; i++)
             //{
             //    copy[i] = Math.Abs(org[i]);
             //}
-            //for (int i = 0; i < copy.Length; i++)
-            //{
-            //    Console.WriteLine(copy[i]);
-            //}
 
-            // Create a new array from the original one,
-            // where the new values are absolute vals of the original. 
+            //PrintArray(copy);
+            // Error, wrong type - Can not accept a chrArr as the function is returning an int array. 
+            //char[] chrArr = new char[5];
+            //PrintArray(chrArr); 
 
-            //Find the largest number in an array
-            //int[] arr = new int[] { 13, 6, 7, 12, 99, 0 };
-            //int result = int.MinValue;
-            //for(int i=0; i < arr.Length; i++)
-            //{
-            //    if(arr[i] > result)
-            //    {
-            //        result = arr[i];
-            //    }
-            //}
-            //Console.WriteLine(result);
+            //int input = int.Parse(Console.ReadLine());
+            //int freq = NumFrequencyInArray(copy, input);
+            //double d = Math.Sin(19);
 
-            // Find the frequency of a number in an array.
-            int[] arr = new int[] { 13, 6, 7, 12, 99, 0, 6, 7, 6 };
-            int count = 0;
-            int number = int.Parse(Console.ReadLine());
+            //CompleteInRange(10, 10000);
+            Console.WriteLine(AreFriends(6, 6));
+            RangeOfFriends(1, 1000);
+        }
 
+
+        // FUNCTIONS
+
+        // Writing Functions
+        // return type, name of function, and 
+        // A function should do ONE thing. in general, if it is more the 15 - 20 - look at refactoring.
+        static void PrintArray(int[] arrToPrint)
+        {
+            for (int i = 0; i < arrToPrint.Length; i++)
+            {
+                Console.WriteLine(arrToPrint[i]);
+            }
+        }
+
+
+        // Write a function to return the frequency of a number in an integer array.
+        static int NumFrequencyInArray(int[] arr, int number)
+        {
+            int result = 0;
             for (int i = 0; i < arr.Length; i++)
             {
                 if (arr[i] == number)
                 {
-                    count++;
+                    result++;
                 }
-                // If it was a sorted arr -> { 1, 2, 3, 4, 5, 99, 100, 200 }
-                // if (arr[i] > number)                
-                //    break;              
             }
-            Console.WriteLine("The frequency of {0} is {1}", number, count);
-
-
-
-
-            //Learning Console.WriteLine and basic if/else statement
-            //Console.WriteLine("Welcome to my game...");
-            //Console.WriteLine("Please Enter your age and OS type:");
-            //int age = int.Parse(Console.ReadLine());
-            //string OS = Console.ReadLine();
-            //if (age >= 12 && OS == "Windows") 
-            //{
-            //    Console.WriteLine("You can start playing");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Please come back in " + (12 - age) + " years.");
-            //}
-
-
-
-            /*
-            Will use these more
-            string s = Console.ReadLine();
-            int x = 0; // 4 bytes, byte = 8 // 32 bytes 
-            int - Can't contain anything but an integer in an int - never accept a string (ex. 0.9 will not work)           
-            int32 is the same size is int
-            int64 can represent very high numbers.
-            We will mostly use int
-            Console.WriteLine(int.MaxValue);
-            Console.WriteLine(int.MinValue);
-
-            bool b = true; 0 - You only need 1 byte to represent a boolean
-            char c = 'a'; 2 bytes 
-
-            Differences and Comments
-            float f = 1.34564f; Need an f in the end of float - Can go up to 7 digits - used to measure things, ex distance.
-            double d = 1.3; Can go up to 15/16 digits  - used to measure things, ex distance, double takes more space then float. 
-            decimal de = 1.38798756454654m; need an m at the end of a decimal - Can take up to  28/29 digits - used mainly banks 
-            Using float and double are a lot faster then decimal as decimal takes up more memory. 
-            */
+            return result;
         }
 
-        // Writing Functions
-        void 
+        // Write a function to see if a number is complete
+        // (the number is equal to the sum of it's divisors)
+        // 6 : 3, 2, 1 : complete (sum is 6)
+        // 12: 6, 4, 3, 2, 1 : not complete (sum is 16) 
+        // 28: 14, 7, 4, 2, 1 : complete (sum is 28)
+        static bool IsComplete(int num)
+        {
+            if (SumOfDivisors(num) == num)
+                return true;
+            return false;
+        }
 
+        // Write a function to print all complete numbers in range
+
+        // writing a new function
+        // Mixing functions
+        static void CompleteInRange(int start, int end)
+        {
+            for (int i = start; i <= end; i++)
+            {
+                if (IsComplete(i))
+                {
+                    Console.WriteLine(i);
+                }
+            }
+            Console.WriteLine("Are all divisors of {0}", end);
+        }
+
+        // Making a new function.
+        static void PrintCompleteNum(int num)
+        {
+            for (int i = 1; i < num / 2; i++)
+            {
+                if (num % i == 0)
+                    Console.WriteLine("{0} is a divisor of {1}", i, num);
+            }
+        }
+
+        // Friends numbers Function
+        // X is a friend of Y if:
+        // Sum of Divisors of X = Y and sum of Divisors of Y = X
+        // example 1: 24, 36 : These are NOT friends
+        // 24 -> 12, 8, 6, 4, 3, 2, 1 : 36
+        // 36 -> 18, 12, 9, 6, 4, 3, 2, 1 : 55
+        // example 2: 6, 6 : These ARE friends
+        // example 3: 8, 8 : These are NOT friends
+        // 1, 2, 4 : 7
+
+        // Write a function to see if two numbers are friends
+        static bool AreFriends(int x, int y)
+        {
+            int sumX = SumOfDivisors(x);
+            if (sumX == y)
+            {
+                int sumY = SumOfDivisors(y);
+                if (sumY == x)
+                    return true;
+            }
+            return false;
+        }
+        static int SumOfDivisors(int num)
+        {
+            int result = 0;
+            for (int i = 1; i <= num / 2; i++)
+            {
+                if (num % i == 0)
+                    result += i;
+            }
+            return result;
+        }
+
+        // Get all friends numbers in a range
+        static void RangeOfFriends(int start, int end)
+        {
+            for (int i = start; i <= end; i++)
+            {
+                for (int j = i; j <= end; j++)
+                { 
+                    if (AreFriends(i, j))
+                        Console.WriteLine("{0} and {1} are friends!", i, j);
+                    ;
+                }
+            }
+        }
     }
 }
